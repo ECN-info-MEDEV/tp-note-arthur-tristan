@@ -127,6 +127,10 @@ public class Code {
         return nbPionsBienPlaces == 4;
     }
 
+    /**
+     * Permet d'afficher le code c'est à dire les couleurs dans l'odre des
+     * différents pions et le code de vérification
+     */
     public void affiche() {
         for (Pion p : code) {
             p.affiche();
