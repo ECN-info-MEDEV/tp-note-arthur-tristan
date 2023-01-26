@@ -3,6 +3,7 @@ package org.centrale.mastermind;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 /**
  * Classe qui représente un code, que ce soit celui choisit par le codeur ou
@@ -12,6 +13,8 @@ import java.util.Scanner;
  * @author Arthur et Tristan
  */
 public class Code {
+
+    private static final Logger LOGGER = Logger.getLogger(Code.class.getName());
     private List<Pion> code;
     private String codeString;
     private String verif;
@@ -35,19 +38,19 @@ public class Code {
      * Méthode initialisant le code par intéraction avec un joueur
      */
     private void choixCode() {
-        System.out.println("Merci de saisir un code.");
+        LOGGER.info("Merci de saisir un code.");
         System.out
                 .println("Il est constitué d'une chaine de 4 caractères ou chaque caractère correspond à une couleur");
-        System.out.println("R=rouge, V = vert, J = jaune, B = bleu, N = noir, W = blanc");
-        System.out.println("Exemple de chaine de caractère valide : VJWB");
+        LOGGER.info("R=rouge, V = vert, J = jaune, B = bleu, N = noir, W = blanc");
+        LOGGER.info("Exemple de chaine de caractère valide : VJWB");
         while (code == null) {
-            System.out.println("Merci de saisir une chaine de caractère valide :");
+            LOGGER.info("Merci de saisir une chaine de caractère valide :");
             String s = sc.nextLine();
             try {
                 this.code = verifValidString(s.toUpperCase());
                 this.codeString = s.toUpperCase();
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                LOGGER.info(e.getMessage());
             }
         }
     }
@@ -150,7 +153,7 @@ public class Code {
             p.affiche();
             System.out.print(" - ");
         }
-        System.out.println(verif);
+        LOGGER.info(verif);
     }
 
     /**

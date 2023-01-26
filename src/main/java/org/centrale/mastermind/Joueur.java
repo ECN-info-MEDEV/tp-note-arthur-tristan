@@ -3,11 +3,14 @@ package org.centrale.mastermind;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 /**
  * Classe de gestion des joueurs
  */
 public class Joueur {
+
+    private static final Logger LOGGER = Logger.getLogger(Joueur.class.getName());
     private int score; //Score du joueur
     private String pseudo; //Pseudo du joueur
     private List<Code> codeEssais; //Liste des codes qu'ils a essayé ce tour de jeu
@@ -29,8 +32,8 @@ public class Joueur {
      * @return
      */
     public boolean essai(Code codeATrouver, Scanner sc){
-        System.out.println("");
-        System.out.println("Au tour de " + pseudo + " c'est le décodeur");
+        LOGGER.info("");
+        LOGGER.info("Au tour de " + pseudo + " c'est le décodeur");
         Code codeEssai = new Code(sc);
         boolean verif = codeEssai.verification(codeATrouver);
         codeEssais.add(codeEssai);
