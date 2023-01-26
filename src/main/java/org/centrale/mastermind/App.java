@@ -7,6 +7,11 @@ package org.centrale.mastermind;
  */
 public class App {
 
+    Code codeATrouver;
+    int nombreTDJ;
+    Joueur j1;
+    Joueur j2;
+
     /**
      * juste Hello World
      * 
