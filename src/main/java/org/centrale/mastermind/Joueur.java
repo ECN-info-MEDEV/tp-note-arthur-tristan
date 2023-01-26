@@ -1,20 +1,22 @@
 package org.centrale.mastermind;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Joueur {
-    int score;
-    String pseudo;
-    List<Code> codeEssais;
+    private int score;
+    private String pseudo;
+    private List<Code> codeEssais;
 
     public Joueur(String pseudo){
         this.pseudo = pseudo;
         score = 0;
-        codeEssais = null;
+        codeEssais = new ArrayList<Code>();
     }
 
     public boolean essai(Code codeATrouver){
-        System.out.println("Au tour du decodeur");
+        System.out.println("");
+        System.out.println("Au tour de " + pseudo + " c'est le décodeur");
         Code codeEssai = new Code();
         boolean verif = codeEssai.verification(codeATrouver);
         codeEssais.add(codeEssai);

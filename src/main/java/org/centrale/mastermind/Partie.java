@@ -7,10 +7,10 @@ package org.centrale.mastermind;
  */
 public class Partie {
 
-    Code codeATrouver;
-    int nombreTDJ;
-    Joueur j1;
-    Joueur j2;
+    private Code codeATrouver;
+    private int nombreTDJ;
+    private Joueur j1;
+    private Joueur j2;
 
     public Partie(){
         codeATrouver = null;
@@ -28,45 +28,61 @@ public class Partie {
 
     public void launch(){
         if (nombreTDJ > 0){
-            System.out.println("Au tour du codeur, il doit choisir un code que le décodeur va essayer de trouver");
+            Joueur codeur;
+            Joueur decodeur;
+
+            if (nombreTDJ%2 == 0){
+                codeur = j1;
+                decodeur = j2;
+            }
+            else {
+                codeur = j2;
+                decodeur = j1;
+            }
+            System.out.println("Au tour de " + codeur.getPseudo() + ", c'est le codeur : il doit choisir un code que le décodeur va essayer de trouver");
             codeATrouver = new Code();
-            tourDeJeu();
+            System.out.println("-------     ------------------------------------------------------------");
+            System.out.println("-------------     ------------------------------------------------------");
+            System.out.println("---------------------     ----------------------------------------------");
+            System.out.println("------------------------------     -------------------------------------");
+            System.out.println("----------------------------------------     ---------------------------");
+            System.out.println("-------------------------------------------------     ------------------");
+            System.out.println("----------------------------------------------------------     ---------");
+            System.out.println("------------------------------------------------------------------     -");
+            tourDeJeu(codeur, decodeur);
         }
         else{
             System.out.println("Fin du jeu, voici les scores :");
-            System.out.println(j1.pseudo + " : " + j1.score + " points");
-            System.out.println(j2.pseudo + " : " + j2.score + " points");
+            System.out.println(j1.getPseudo() + " : " + j1.getScore() + " points");
+            System.out.println(j2.getPseudo() + " : " + j2.getScore() + " points");
         }
     }
 
-    public void tourDeJeu(){
-        Joueur codeur;
-        Joueur decodeur;
-
-        if (nombreTDJ%2 == 0){
-            codeur = j1;
-            decodeur = j2;
-        }
-        else {
-            codeur = j2;
-            decodeur = j1;
-        }
-
+    public void tourDeJeu(Joueur codeur,Joueur decodeur){
         int nbEssai = 12;
 
         while (nbEssai>0){
             if (!decodeur.essai(codeATrouver)){
-                for (Code x : decodeur.codeEssais){
+                System.out.println("-------------------  Essais précédents   -----------------------------");
+                for (Code x : decodeur.getCodeEssais()){                   
                     x.affiche();
                 }
             }
             else{
+                System.out.println("Bravo tu as trouvé !");
                 break;
-            }      
+            }
+            nbEssai--;      
+        }
+        if (nbEssai == 0){
+            System.out.println("C'est perdu!");
         }
 
+        System.out.println("Le codeur marque " + decodeur.getCodeEssais().size() + " points");
         codeur.setScore(codeur.getScore() + decodeur.getCodeEssais().size());
         nombreTDJ--;
+        System.out.println("");
+        System.out.println("-------------------------------------------------------------------");
         launch();
     }
 

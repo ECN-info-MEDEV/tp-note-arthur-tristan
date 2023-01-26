@@ -37,6 +37,9 @@ public class App {
         }
 
         Partie p = new Partie(null,nbT,j1,j2);
+        System.out.println("");
+        System.out.println("------------------------------------------------------");
+        System.out.println("------------------Début de la Partie------------------");
         p.launch();
 
         clavier.close();
