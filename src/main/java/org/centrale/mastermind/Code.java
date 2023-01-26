@@ -43,7 +43,7 @@ public class Code {
         while (code == null) {
             System.out.println("Merci de saisir une chaine de caractère valide :");
             String s = sc.nextLine();
-            try {             
+            try {
                 this.code = verifValidString(s.toUpperCase());
                 this.codeString = s.toUpperCase();
             } catch (Exception e) {
@@ -133,6 +133,15 @@ public class Code {
     }
 
     /**
+     * getter de codeString
+     * 
+     * @return codeString
+     */
+    private String getCodeString() {
+        return this.codeString;
+    }
+
+    /**
      * Permet d'afficher le code c'est à dire les couleurs dans l'odre des
      * différents pions et le code de vérification
      */
@@ -145,45 +154,11 @@ public class Code {
     }
 
     /**
-     * @return List<Pion> return the code
-     */
-    public List<Pion> getCode() {
-        return code;
-    }
-
-    /**
-     * @param code the code to set
-     */
-    public void setCode(List<Pion> code) {
-        this.code = code;
-    }
-
-    /**
-     * @return String return the codeString
-     */
-    public String getCodeString() {
-        return codeString;
-    }
-
-    /**
-     * @param codeString the codeString to set
-     */
-    public void setCodeString(String codeString) {
-        this.codeString = codeString;
-    }
-
-    /**
-     * @return String return the verif
+     * getter de la variable verif
+     * 
+     * @return la variable verif
      */
     public String getVerif() {
-        return verif;
+        return this.verif;
     }
-
-    /**
-     * @param verif the verif to set
-     */
-    public void setVerif(String verif) {
-        this.verif = verif;
-    }
-
 }
