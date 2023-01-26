@@ -35,6 +35,7 @@ public class App {
                 System.out.println("Ce choix n'est pas valide");
             }
         }
+
         clavier.close();
 
         Partie p = new Partie(null,nbT,j1,j2);

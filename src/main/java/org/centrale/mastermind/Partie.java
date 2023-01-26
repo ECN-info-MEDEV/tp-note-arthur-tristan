@@ -27,7 +27,47 @@ public class Partie {
     }
 
     public void launch(){
-        
+        if (nombreTDJ > 0){
+            System.out.println("Au tour du codeur, il doit choisir un code que le décodeur va essayer de trouver");
+            codeATrouver = new Code();
+            tourDeJeu();
+        }
+        else{
+            System.out.println("Fin du jeu, voici les scores :");
+            System.out.println(j1.pseudo + " : " + j1.score + " points");
+            System.out.println(j2.pseudo + " : " + j2.score + " points");
+        }
+    }
+
+    public void tourDeJeu(){
+        Joueur codeur;
+        Joueur decodeur;
+
+        if (nombreTDJ%2 == 0){
+            codeur = j1;
+            decodeur = j2;
+        }
+        else {
+            codeur = j2;
+            decodeur = j1;
+        }
+
+        int nbEssai = 12;
+
+        while (nbEssai>0){
+            if (!decodeur.essai(codeATrouver)){
+                for (Code x : decodeur.codeEssais){
+                    x.affiche();
+                }
+            }
+            else{
+                break;
+            }      
+        }
+
+        codeur.setScore(codeur.getScore() + decodeur.getCodeEssais().size());
+        nombreTDJ--;
+        launch();
     }
 
     public Code getCodeATrouver() {
