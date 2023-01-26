@@ -1,4 +1,4 @@
-package org.centrale.project;
+package org.centrale.mastermind;
 
 /**
  * Classe hello world
