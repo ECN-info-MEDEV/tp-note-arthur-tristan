@@ -35,16 +35,15 @@ public class Code {
         System.out.println("Exemple de chaine de caractère valide : VJWB");
         Scanner sc = new Scanner(System.in);
         while (code == null) {
-            try {
-                System.out.println("Merci de saisir une chaine de caractère valide :");
-                String s = sc.nextLine();
+            System.out.println("Merci de saisir une chaine de caractère valide :");
+            String s = sc.nextLine();
+            try {             
                 this.code = verifValidString(s.toUpperCase());
                 this.codeString = s.toUpperCase();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
-        sc.close();
     }
 
     /**

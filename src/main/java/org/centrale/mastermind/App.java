@@ -36,9 +36,9 @@ public class App {
             }
         }
 
-        clavier.close();
-
         Partie p = new Partie(null,nbT,j1,j2);
         p.launch();
+
+        clavier.close();
     }
 }
