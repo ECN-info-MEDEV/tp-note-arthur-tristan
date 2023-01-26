@@ -15,12 +15,14 @@ public class Code {
     private List<Pion> code;
     private String codeString;
     private String verif;
+    private Scanner sc;
 
     /**
      * Constructeur de code
      */
-    public Code() {
+    public Code(Scanner sc) {
         verif = "";
+        this.sc = sc;
         choixCode();
     }
 
@@ -38,7 +40,6 @@ public class Code {
                 .println("Il est constitué d'une chaine de 4 caractères ou chaque caractère correspond à une couleur");
         System.out.println("R=rouge, V = vert, J = jaune, B = bleu, N = noir, W = blanc");
         System.out.println("Exemple de chaine de caractère valide : VJWB");
-        Scanner sc = new Scanner(System.in);
         while (code == null) {
             System.out.println("Merci de saisir une chaine de caractère valide :");
             String s = sc.nextLine();

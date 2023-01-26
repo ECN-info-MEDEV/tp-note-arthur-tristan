@@ -11,10 +11,10 @@ public class App {
 
         System.out.println("Bonjour et bienvenu sur cette version du MASTERMIND !");
         System.out.println("Ce jeu se joue à deux joueurs, quelles sont vos pseudos ?"); 
-        Scanner clavier = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-        String pseudo1 = clavier.nextLine();
-        String pseudo2 = clavier.nextLine();
+        String pseudo1 = sc.nextLine();
+        String pseudo2 = sc.nextLine();
 
         Joueur j1 = new Joueur(pseudo1);
         Joueur j2 = new Joueur(pseudo2);
@@ -26,7 +26,7 @@ public class App {
         int nbT = 0;
 
         while (choix){
-            String c = clavier.nextLine();
+            String c = sc.nextLine();
             try{
                 nbT = Integer.parseInt(c);
                 if (nbT%2 == 0){
@@ -40,12 +40,12 @@ public class App {
             }
         }
 
-        Partie p = new Partie(null,nbT,j1,j2);
+        Partie p = new Partie(null,nbT,j1,j2, sc);
         System.out.println("");
         System.out.println("------------------------------------------------------");
         System.out.println("------------------Début de la Partie------------------");
         p.launch();
 
-        clavier.close();
+        sc.close();
     }
 }

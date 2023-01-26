@@ -1,6 +1,7 @@
 package org.centrale.mastermind;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Classe de gestion d'une partie de Mastermind
@@ -13,11 +14,13 @@ public class Partie {
     private int nombreTDJ; //Le nombre de tour de jeu
     private Joueur j1; //Premier joueur
     private Joueur j2; //Second joueur
+    Scanner sc;
 
     /**
      * Constructeur par défaut, toute les variables prennent leur valeur par défaut
      */
-    public Partie(){
+    public Partie(Scanner sc){
+        this.sc = sc;
         codeATrouver = null;
         nombreTDJ = 0;
         j1 = null;
@@ -32,8 +35,9 @@ public class Partie {
      * @param j1
      * @param j2
      */
-    public Partie(Code codeAtrouver, int nbT, Joueur j1, Joueur j2){
+    public Partie(Code codeAtrouver, int nbT, Joueur j1, Joueur j2, Scanner sc){
         this.codeATrouver = codeAtrouver;
+        this.sc = sc;
         this.nombreTDJ = nbT;
         this.j1 = j1;
         this.j2 = j2;
@@ -58,7 +62,7 @@ public class Partie {
                 decodeur = j1;
             }
             System.out.println("Au tour de " + codeur.getPseudo() + ", c'est le codeur : il doit choisir un code que le décodeur va essayer de trouver");
-            codeATrouver = new Code();
+            codeATrouver = new Code(this.sc);
             System.out.println("-------     ------------------------------------------------------------");
             System.out.println("-------------     ------------------------------------------------------");
             System.out.println("---------------------     ----------------------------------------------");
@@ -87,7 +91,7 @@ public class Partie {
         int nbEssai = 12;
 
         while (nbEssai>0){
-            if (!decodeur.essai(codeATrouver)){
+            if (!decodeur.essai(codeATrouver, sc)){
                 System.out.println("-------------------  Essais précédents   -----------------------------");
                 for (Code x : decodeur.getCodeEssais()){                   
                     x.affiche();

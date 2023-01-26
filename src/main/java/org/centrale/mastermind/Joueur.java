@@ -2,6 +2,7 @@ package org.centrale.mastermind;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Classe de gestion des joueurs
@@ -27,10 +28,10 @@ public class Joueur {
      * @param codeATrouver
      * @return
      */
-    public boolean essai(Code codeATrouver){
+    public boolean essai(Code codeATrouver, Scanner sc){
         System.out.println("");
         System.out.println("Au tour de " + pseudo + " c'est le décodeur");
-        Code codeEssai = new Code();
+        Code codeEssai = new Code(sc);
         boolean verif = codeEssai.verification(codeATrouver);
         codeEssais.add(codeEssai);
         return verif;
