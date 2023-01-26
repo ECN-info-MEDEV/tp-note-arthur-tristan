@@ -1,6 +1,5 @@
 package org.centrale.mastermind;
 
-import java.util.logging.Logger;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,7 +10,6 @@ import java.util.Scanner;
  */
 public class Partie {
 
-    private static final Logger LOGGER = Logger.getLogger(Partie.class.getName());
     private Code codeATrouver; //le code créé par le codeur
     private int nombreTDJ; //Le nombre de tour de jeu
     private Joueur j1; //Premier joueur
@@ -63,22 +61,22 @@ public class Partie {
                 codeur = j2;
                 decodeur = j1;
             }
-            LOGGER.info("Au tour de " + codeur.getPseudo() + ", c'est le codeur : il doit choisir un code que le décodeur va essayer de trouver");
+            System.out.println("Au tour de " + codeur.getPseudo() + ", c'est le codeur : il doit choisir un code que le décodeur va essayer de trouver");
             codeATrouver = new Code(this.sc);
-            LOGGER.info("-------     ------------------------------------------------------------");
-            LOGGER.info("-------------     ------------------------------------------------------");
-            LOGGER.info("---------------------     ----------------------------------------------");
-            LOGGER.info("------------------------------     -------------------------------------");
-            LOGGER.info("----------------------------------------     ---------------------------");
-            LOGGER.info("-------------------------------------------------     ------------------");
-            LOGGER.info("----------------------------------------------------------     ---------");
-            LOGGER.info("------------------------------------------------------------------     -");
+            System.out.println("-------     ------------------------------------------------------------");
+            System.out.println("-------------     ------------------------------------------------------");
+            System.out.println("---------------------     ----------------------------------------------");
+            System.out.println("------------------------------     -------------------------------------");
+            System.out.println("----------------------------------------     ---------------------------");
+            System.out.println("-------------------------------------------------     ------------------");
+            System.out.println("----------------------------------------------------------     ---------");
+            System.out.println("------------------------------------------------------------------     -");
             tourDeJeu(codeur, decodeur);
         }
         else{
-            LOGGER.info("Fin du jeu, voici les scores :");
-            LOGGER.info(j1.getPseudo() + " : " + j1.getScore() + " points");
-            LOGGER.info(j2.getPseudo() + " : " + j2.getScore() + " points");
+            System.out.println("Fin du jeu, voici les scores :");
+            System.out.println(j1.getPseudo() + " : " + j1.getScore() + " points");
+            System.out.println(j2.getPseudo() + " : " + j2.getScore() + " points");
         }
     }
 
@@ -94,27 +92,27 @@ public class Partie {
 
         while (nbEssai>0){
             if (!decodeur.essai(codeATrouver, sc)){
-                LOGGER.info("-------------------  Essais précédents   -----------------------------");
+                System.out.println("-------------------  Essais précédents   -----------------------------");
                 for (Code x : decodeur.getCodeEssais()){                   
                     x.affiche();
                 }
             }
             else{
-                LOGGER.info("Bravo tu as trouvé !");
+                System.out.println("Bravo tu as trouvé !");
                 break;
             }
             nbEssai--;      
         }
         if (nbEssai == 0){
-            LOGGER.info("C'est perdu!");
+            System.out.println("C'est perdu!");
         }
 
-        LOGGER.info("Le codeur marque " + decodeur.getCodeEssais().size() + " points");
+        System.out.println("Le codeur marque " + decodeur.getCodeEssais().size() + " points");
         codeur.setScore(codeur.getScore() + decodeur.getCodeEssais().size());
         decodeur.setCodeEssais(new ArrayList<Code>());
         nombreTDJ--;
-        LOGGER.info("");
-        LOGGER.info("-------------------------------------------------------------------");
+        System.out.println("");
+        System.out.println("-------------------------------------------------------------------");
         launch();
     }
 

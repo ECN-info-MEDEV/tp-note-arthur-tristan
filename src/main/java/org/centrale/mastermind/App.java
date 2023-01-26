@@ -1,19 +1,16 @@
 package org.centrale.mastermind;
 
 import java.util.Scanner;
-import java.util.logging.Logger;
 
 /**
  * La classe App est la classe principale, elle contient la fonction main.
  * Cette classe sert seulement à l'initialisation d'une partie de jeu
  */
 public class App {
-
-    private static final Logger LOGGER = Logger.getLogger(App.class.getName());
     public static void main(String[] args) {
 
-        LOGGER.info("Bonjour et bienvenu sur cette version du MASTERMIND !");
-        LOGGER.info("Ce jeu se joue à deux joueurs, quelles sont vos pseudos ?"); 
+        System.out.println("Bonjour et bienvenu sur cette version du MASTERMIND !");
+        System.out.println("Ce jeu se joue à deux joueurs, quelles sont vos pseudos ?"); 
         Scanner sc = new Scanner(System.in);
 
         String pseudo1 = sc.nextLine();
@@ -22,7 +19,7 @@ public class App {
         Joueur j1 = new Joueur(pseudo1);
         Joueur j2 = new Joueur(pseudo2);
 
-        LOGGER.info("Veuillez pour commencer choisir le nombre de tours de jeu,"
+        System.out.println("Veuillez pour commencer choisir le nombre de tours de jeu,"
         + "afin d'être équitable il faut qu'il soit pair"); 
 
         boolean choix = true;
@@ -36,17 +33,17 @@ public class App {
                     choix = false;
                 }
                 else{
-                    LOGGER.info("Ce choix n'est pas valide");
+                    System.out.println("Ce choix n'est pas valide");
                 }
             } catch (Exception e){
-                LOGGER.info("Ce choix n'est pas valide");
+                System.out.println("Ce choix n'est pas valide");
             }
         }
 
         Partie p = new Partie(null,nbT,j1,j2, sc);
-        LOGGER.info("");
-        LOGGER.info("------------------------------------------------------");
-        LOGGER.info("------------------Début de la Partie------------------");
+        System.out.println("");
+        System.out.println("------------------------------------------------------");
+        System.out.println("------------------Début de la Partie------------------");
         p.launch();
 
         sc.close();
