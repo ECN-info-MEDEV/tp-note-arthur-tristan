@@ -4,9 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Classe 
+ */
 public class Code {
-    List<Pion> code;
-    String verif;
+    private List<Pion> code;
+    private String codeString;
+    private String verif;
 
     public Code() {
         verif = "";
@@ -25,6 +29,7 @@ public class Code {
                 System.out.println("Merci de saisir une chaine de caractère valide :");
                 String s = sc.nextLine();
                 this.code = verifValidString(s.toUpperCase());
+                this.codeString = s.toUpperCase();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -67,11 +72,25 @@ public class Code {
         return listPion;
     }
 
-    public void verification(Code c) {
+    public void verification(Code codeAVerif) {
+        verif = "";
         int nbPionsBienPlaces = 0;
         int nbPionsMalPlaces = 0;
-        for (int k = 0; k<4; k++) {
-            
+        String codeStringVerif = codeAVerif.getCodeString();
+        char c;
+        for (int k = 0; k < 4; k++) {
+            c = this.codeString.charAt(k);
+            if (c == codeStringVerif.charAt(k)) {
+                nbPionsBienPlaces++;
+            } else if (codeStringVerif.contains("" + c)) {
+                nbPionsMalPlaces++;
+            }
+        }
+        for (int k = 0; k < nbPionsBienPlaces; k++) {
+            verif += "O ";
+        }
+        for (int k = 0; k < nbPionsMalPlaces; k++) {
+            verif += "~ ";
         }
     }
 
@@ -80,5 +99,49 @@ public class Code {
             p.affiche();
             System.out.print(" - ");
         }
+        System.out.println(verif);
     }
+
+    /**
+     * @return List<Pion> return the code
+     */
+    public List<Pion> getCode() {
+        return code;
+    }
+
+    /**
+     * @param code the code to set
+     */
+    public void setCode(List<Pion> code) {
+        this.code = code;
+    }
+
+    /**
+     * @return String return the codeString
+     */
+    public String getCodeString() {
+        return codeString;
+    }
+
+    /**
+     * @param codeString the codeString to set
+     */
+    public void setCodeString(String codeString) {
+        this.codeString = codeString;
+    }
+
+    /**
+     * @return String return the verif
+     */
+    public String getVerif() {
+        return verif;
+    }
+
+    /**
+     * @param verif the verif to set
+     */
+    public void setVerif(String verif) {
+        this.verif = verif;
+    }
+
 }
