@@ -5,18 +5,28 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Classe 
+ * Classe qui représente un code, que ce soit celui choisit par le codeur ou
+ * celui par le décodeur
+ * Il se compose d'une liste de pion ordonnée
+ * 
+ * @author Arthur et Tristan
  */
 public class Code {
     private List<Pion> code;
     private String codeString;
     private String verif;
 
+    /**
+     * Constructeur de code
+     */
     public Code() {
         verif = "";
         choixCode();
     }
 
+    /**
+     * Méthode initialisant le code par intéraction avec un joueur
+     */
     private void choixCode() {
         System.out.println("Merci de saisir un code.");
         System.out
@@ -37,6 +47,19 @@ public class Code {
         sc.close();
     }
 
+    /**
+     * Permet de vérifier que la chaine de caractère saisie par l'utilisateur soit
+     * correcte :
+     * Elle est composée de 4 charactères collés ou chaque caractère représente une
+     * couleure
+     * B = Bleu, R = rouge, V = vert, J = jaune, N = noir, W = blanc
+     * Le string n'est pas sensible à la casse
+     * 
+     * @param s chaine de caractère à vérifier
+     * @return la liste des pions qui correspond à la chaine de caractères
+     * @throws Exception si la chaine n'est pas correcte, renvoie une exception avec
+     *                   en message le problème rencontré
+     */
     private List<Pion> verifValidString(String s) throws Exception {
         List<Pion> listPion = new LinkedList<>();
         if (s.length() != 4) {
@@ -72,7 +95,16 @@ public class Code {
         return listPion;
     }
 
-    public void verification(Code codeAVerif) {
+    /**
+     * Permet de vérifier le taux de ressemblance entre deux codes selon les règles
+     * du mastermind
+     * Si deux pions sont de même couleur et au même endroit on affiche un O
+     * Si deux pions sont de même couleur mais pas au même endroit on affiche un ~
+     * 
+     * @param codeAVerif code témoin
+     * @return true si les deux codes sont identiques, false sinon
+     */
+    public boolean verification(Code codeAVerif) {
         verif = "";
         int nbPionsBienPlaces = 0;
         int nbPionsMalPlaces = 0;
@@ -92,6 +124,7 @@ public class Code {
         for (int k = 0; k < nbPionsMalPlaces; k++) {
             verif += "~ ";
         }
+        return nbPionsBienPlaces == 4;
     }
 
     public void affiche() {
