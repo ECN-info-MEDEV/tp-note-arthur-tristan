@@ -2,6 +2,10 @@ package org.centrale.mastermind;
 
 import java.util.Scanner;
 
+/**
+ * La classe App est la classe principale, elle contient la fonction main.
+ * Cette classe sert seulement à l'initialisation d'une partie de jeu
+ */
 public class App {
     public static void main(String[] args) {
 
