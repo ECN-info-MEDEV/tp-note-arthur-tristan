@@ -24,6 +24,11 @@ public class Code {
         choixCode();
     }
 
+    public Code(String codeString, List<Pion> code) {
+        this.code = code;
+        this.codeString = codeString;
+    }
+
     /**
      * Méthode initialisant le code par intéraction avec un joueur
      */
@@ -59,7 +64,7 @@ public class Code {
      * @throws Exception si la chaine n'est pas correcte, renvoie une exception avec
      *                   en message le problème rencontré
      */
-    private List<Pion> verifValidString(String s) throws Exception {
+    public List<Pion> verifValidString(String s) throws Exception {
         List<Pion> listPion = new LinkedList<>();
         if (s.length() != 4) {
             throw new Exception("Le nombre de pion donné n'est pas cohérent !");
@@ -104,7 +109,7 @@ public class Code {
      * @return true si les deux codes sont identiques, false sinon
      */
     public boolean verification(Code codeAVerif) {
-        verif = "";
+        this.verif = "";
         int nbPionsBienPlaces = 0;
         int nbPionsMalPlaces = 0;
         String codeStringVerif = codeAVerif.getCodeString();
@@ -118,10 +123,10 @@ public class Code {
             }
         }
         for (int k = 0; k < nbPionsBienPlaces; k++) {
-            verif += "O ";
+            this.verif += "O ";
         }
         for (int k = 0; k < nbPionsMalPlaces; k++) {
-            verif += "~ ";
+            this.verif += "~ ";
         }
         return nbPionsBienPlaces == 4;
     }
