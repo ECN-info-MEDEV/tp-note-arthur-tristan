@@ -6,8 +6,10 @@ import java.util.Scanner;
 
 public class Code {
     List<Pion> code;
+    String verif;
 
     public Code() {
+        verif = "";
         choixCode();
     }
 
@@ -63,6 +65,14 @@ public class Code {
             listPion.add(p);
         }
         return listPion;
+    }
+
+    public void verification(Code c) {
+        int nbPionsBienPlaces = 0;
+        int nbPionsMalPlaces = 0;
+        for (int k = 0; k<4; k++) {
+            
+        }
     }
 
     public void affiche() {
